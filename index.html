@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spice & Spoon — Recipe Collection</title>
+<style>
+:root{
+  --bg:#fffaf4; --card:#fff; --text:#29231f; --muted:#766c64;
+  --accent:#d85b3f; --accent2:#f2a65a; --line:#eee2d6; --dark:#2d2723;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{position:sticky;top:0;z-index:10;background:rgba(255,250,244,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{max-width:1180px;margin:auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:Georgia,serif;font-size:25px;font-weight:800}.logo span{color:var(--accent)}
+nav a{margin-left:24px;text-decoration:none;color:var(--text);font-weight:600}
+.hero{max-width:1180px;margin:42px auto 30px;padding:48px 22px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.eyebrow{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:13px}
+h1{font-family:Georgia,serif;font-size:clamp(42px,6vw,72px);line-height:1.03;margin:12px 0 18px}
+.hero p{font-size:18px;color:var(--muted);max-width:600px}
+.hero-img{min-height:370px;border-radius:30px;background:linear-gradient(135deg,rgba(0,0,0,.05),rgba(0,0,0,.18)),url("https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85") center/cover;box-shadow:0 20px 50px rgba(79,52,31,.16)}
+.search{max-width:1180px;margin:0 auto;padding:0 22px 18px;display:flex;gap:12px}
+.search input{flex:1;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:white;font-size:16px;outline:none}
+.search button,.primary{border:0;border-radius:14px;padding:0 22px;background:var(--accent);color:white;font-weight:800;cursor:pointer}
+.categories{max-width:1180px;margin:auto;padding:12px 22px 25px;display:flex;gap:10px;flex-wrap:wrap}
+.cat{border:1px solid var(--line);background:white;border-radius:999px;padding:9px 16px;cursor:pointer;font-weight:700;color:var(--muted)}
+.cat.active,.cat:hover{background:var(--dark);color:white;border-color:var(--dark)}
+.section{max-width:1180px;margin:auto;padding:20px 22px 60px}
+.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px}
+h2{font-family:Georgia,serif;font-size:36px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 8px 25px rgba(80,50,25,.06);transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 35px rgba(80,50,25,.11)}
+.card-img{height:220px;background-size:cover;background-position:center}
+.card-body{padding:19px}.tag{font-size:12px;color:var(--accent);font-weight:800;text-transform:uppercase}
+.card h3{font-family:Georgia,serif;font-size:24px;margin:5px 0}
+.meta{display:flex;gap:16px;color:var(--muted);font-size:14px;margin:10px 0 16px}
+.view{width:100%;padding:11px;border:1px solid var(--line);background:white;border-radius:12px;font-weight:800;cursor:pointer}
+.empty{text-align:center;color:var(--muted);padding:40px;display:none}
+footer{background:var(--dark);color:#eee;padding:38px 22px;text-align:center}
+footer span{color:#ffad73}
+.modal{display:none;position:fixed;inset:0;background:rgba(20,15,12,.62);z-index:30;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}.modal-box{background:white;max-width:760px;width:100%;max-height:90vh;overflow:auto;border-radius:24px;padding:28px;position:relative}
+.close{position:absolute;right:18px;top:14px;border:0;background:#f2eee9;border-radius:50%;width:38px;height:38px;font-size:22px;cursor:pointer}
+.modal h2{margin:8px 0}.ingredients,.steps{margin:18px 0 0 20px}.ingredients li,.steps li{margin:7px 0}
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:25px}.hero-img{min-height:280px}.grid{grid-template-columns:1fr 1fr}nav a{margin-left:10px}}
+@media(max-width:560px){nav a{display:none}.grid{grid-template-columns:1fr}.search{flex-direction:column}.search button{height:50px}.hero{margin-top:20px}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <div class="logo">Spice <span>&</span> Spoon</div>
+  <nav><a href="#recipes">Recipes</a><a href="#categories">Categories</a><a href="#about">About</a></nav>
+</div></header>
+
+<main>
+<section class="hero">
+  <div>
+    <div class="eyebrow">Cook something wonderful</div>
+    <h1>Good food.<br>Good mood.</h1>
+    <p>Discover easy, delicious recipes for everyday cooking — from comforting Indian classics to fresh, quick family favourites.</p>
+  </div>
+  <div class="hero-img"></div>
+</section>
+
+<div class="search">
+  <input id="search" placeholder="Search recipes, ingredients, or cuisine…" />
+  <button onclick="filterRecipes()">Search</button>
+</div>
+
+<div class="categories" id="categories">
+  <button class="cat active" data-cat="All">All</button>
+  <button class="cat" data-cat="Indian">Indian</button>
+  <button class="cat" data-cat="Breakfast">Breakfast</button>
+  <button class="cat" data-cat="Lunch">Lunch</button>
+  <button class="cat" data-cat="Dinner">Dinner</button>
+  <button class="cat" data-cat="Dessert">Dessert</button>
+</div>
+
+<section class="section" id="recipes">
+  <div class="section-head"><div><div class="eyebrow">Our collection</div><h2>Popular recipes</h2></div></div>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty">No recipes found. Try another search.</div>
+</section>
+</main>
+
+<footer id="about"><strong>Spice <span>&</span> Spoon</strong><br><small>Simple recipes. Big flavours. Made with love.</small></footer>
+
+<div class="modal" id="modal">
+ <div class="modal-box">
+  <button class="close" onclick="closeModal()">×</button>
+  <div class="eyebrow" id="mcat"></div>
+  <h2 id="mtitle"></h2>
+  <p id="mdesc" style="color:#766c64"></p>
+  <div class="meta" id="mmeta"></div>
+  <h3>Ingredients</h3><ul class="ingredients" id="ming"></ul>
+  <h3 style="margin-top:22px">Method</h3><ol class="steps" id="msteps"></ol>
+ </div>
+</div>
+
+<script>
+const recipes=[
+ {title:"Butter Chicken",cat:"Indian",time:"45 min",level:"Medium",img:"https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=900&q=80",desc:"Creamy, rich and aromatic chicken curry perfect with naan or rice.",ing:["Chicken — 500 g","Yogurt — ½ cup","Tomato puree — 1 cup","Butter — 3 tbsp","Cream — ½ cup","Garam masala — 1 tsp"],steps:["Marinate chicken with yogurt and spices for 20 minutes.","Cook chicken until lightly charred and set aside.","Cook tomato puree with butter and spices.","Add chicken and simmer for 15 minutes.","Finish with cream and garam masala."]},
+ {title:"Masala Dosa",cat:"Breakfast",time:"35 min",level:"Easy",img:"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=900&q=80",desc:"Crispy South Indian dosa filled with fragrant potato masala.",ing:["Dosa batter — 3 cups","Potatoes — 4","Onion — 1","Mustard seeds — 1 tsp","Curry leaves — 10","Turmeric — ½ tsp"],steps:["Prepare a spiced potato filling with onion and curry leaves.","Heat a flat pan and spread batter into a thin circle.","Drizzle oil and cook until crisp.","Place potato masala in the centre and fold."]},
+ {title:"Paneer Tikka",cat:"Lunch",time:"30 min",level:"Easy",img:"https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=900&q=80",desc:"Smoky, colourful paneer skewers with a tangy yogurt marinade.",ing:["Paneer — 400 g","Bell peppers — 2","Yogurt — ¾ cup","Tandoori masala — 2 tsp","Lemon — 1","Oil — 1 tbsp"],steps:["Mix yogurt, masala, lemon and oil.","Coat paneer and vegetables and marinate 20 minutes.","Thread onto skewers.","Grill or air-fry until golden and lightly charred."]},
+ {title:"Mango Cheesecake",cat:"Dessert",time:"25 min",level:"Easy",img:"https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=80",desc:"A creamy no-bake cheesecake with bright tropical mango flavour.",ing:["Cream cheese — 400 g","Mango puree — 1 cup","Digestive biscuits — 200 g","Butter — 80 g","Sugar — ½ cup","Whipping cream — 1 cup"],steps:["Crush biscuits and combine with melted butter.","Press into a cake tin and chill.","Whip cream and fold into cream cheese, sugar and mango.","Pour over the base and chill for 4 hours."]},
+ {title:"Biryani",cat:"Dinner",time:"1 hr",level:"Medium",img:"https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=900&q=80",desc:"Fragrant basmati rice layered with spices, herbs and tender chicken.",ing:["Basmati rice — 2 cups","Chicken — 600 g","Yogurt — 1 cup","Onions — 2","Biryani masala — 2 tbsp","Mint & coriander — 1 cup"],steps:["Marinate chicken with yogurt and biryani spices.","Parboil rice with whole spices.","Cook chicken until nearly done.","Layer rice over chicken with fried onions and herbs.","Cover and cook on low heat for 20 minutes."]},
+ {title:"Chole",cat:"Indian",time:"40 min",level:"Easy",img:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80",desc:"North Indian chickpea curry packed with warming spices.",ing:["Chickpeas — 2 cups cooked","Onion — 1","Tomatoes — 2","Ginger-garlic paste — 1 tbsp","Chole masala — 2 tsp","Coriander — ½ cup"],steps:["Sauté onion until golden.","Add ginger-garlic paste and tomatoes.","Add chole masala and cook until fragrant.","Add chickpeas and simmer for 20 minutes.","Garnish with coriander and serve."]}
+];
+
+let current="All";
+function render(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const list=recipes.filter(r=>(current==="All"||r.cat===current)&&
+   (r.title.toLowerCase().includes(q)||r.cat.toLowerCase().includes(q)||r.ing.join(" ").toLowerCase().includes(q)));
+ const grid=document.getElementById("grid"); grid.innerHTML="";
+ document.getElementById("empty").style.display=list.length?"none":"block";
+ list.forEach((r,i)=>{
+   const c=document.createElement("article"); c.className="card";
+   c.innerHTML=`<div class="card-img" style="background-image:url('${r.img}')"></div><div class="card-body">
+   <div class="tag">${r.cat}</div><h3>${r.title}</h3><div class="meta"><span>⏱ ${r.time}</span><span>• ${r.level}</span></div>
+   <button class="view" onclick="openModal(${recipes.indexOf(r)})">View recipe</button></div>`;
+   grid.appendChild(c);
+ });
+}
+function filterRecipes(){render()}
+function openModal(i){
+ const r=recipes[i]; document.getElementById("mcat").textContent=r.cat;
+ document.getElementById("mtitle").textContent=r.title; document.getElementById("mdesc").textContent=r.desc;
+ document.getElementById("mmeta").innerHTML=`<span>⏱ ${r.time}</span><span>• ${r.level}</span>`;
+ document.getElementById("ming").innerHTML=r.ing.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("msteps").innerHTML=r.steps.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("modal").classList.add("open");
+}
+function closeModal(){document.getElementById("modal").classList.remove("open")}
+document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>{document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));b.classList.add("active");current=b.dataset.cat;render()});
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
+render();
+</script>
+</body>
+</html>
