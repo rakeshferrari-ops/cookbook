@@ -109,7 +109,7 @@ const recipes=[
  {title:"Chole",cat:"Indian",time:"40 min",level:"Easy",img:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80",desc:"North Indian chickpea curry packed with warming spices.",ing:["Chickpeas — 2 cups cooked","Onion — 1","Tomatoes — 2","Ginger-garlic paste — 1 tbsp","Chole masala — 2 tsp","Coriander — ½ cup"],steps:["Sauté onion until golden.","Add ginger-garlic paste and tomatoes.","Add chole masala and cook until fragrant.","Add chickpeas and simmer for 20 minutes.","Garnish with coriander and serve."]}
 ];
 
-let current="All";
+let current="All";fetch("data/recipes.json")  .then(response => response.json())  .then(data => { recipes.splice(0, recipes.length, ...data.recipes); render(); })  .catch(error => console.error("Could not load recipes:", error));
 function render(){
  const q=document.getElementById("search").value.toLowerCase();
  const list=recipes.filter(r=>(current==="All"||r.cat===current)&&
