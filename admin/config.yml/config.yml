@@ -1,0 +1,58 @@
+backend:
+  name: turbo-github
+  turbo_site_id: PENDING_TURBO_SITE_ID
+  branch: main
+
+site_url: https://rakeshferrari-ops.github.io/cookbook
+display_url: https://rakeshferrari-ops.github.io/cookbook
+media_folder: images/recipes
+public_folder: /cookbook/images/recipes
+
+collections:
+  - name: recipes
+    label: Recipes
+    files:
+      - label: Recipe collection
+        name: recipes
+        file: data/recipes.json
+        fields:
+          - label: Recipes
+            name: recipes
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - label: Recipe name
+                name: title
+                widget: string
+              - label: Category
+                name: cat
+                widget: select
+                options: [Indian, Breakfast, Lunch, Dinner, Dessert]
+              - label: Prep and cook time
+                name: time
+                widget: string
+                hint: 'For example: 35 min'
+              - label: Difficulty
+                name: level
+                widget: select
+                options: [Easy, Medium, Hard]
+              - label: Recipe photo
+                name: img
+                widget: image
+              - label: Short description
+                name: desc
+                widget: text
+              - label: Ingredients
+                name: ing
+                widget: list
+                field:
+                  label: Ingredient
+                  name: ingredient
+                  widget: string
+              - label: Method steps
+                name: steps
+                widget: list
+                field:
+                  label: Step
+                  name: step
+                  widget: string
