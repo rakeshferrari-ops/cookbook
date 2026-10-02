@@ -1,0 +1,139 @@
+{
+  "recipes": [
+    {
+      "title": "Butter Chicken",
+      "cat": "Indian",
+      "time": "45 min",
+      "level": "Medium",
+      "img": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=900&q=80",
+      "desc": "Creamy, rich and aromatic chicken curry perfect with naan or rice.",
+      "ing": [
+        "Chicken — 500 g",
+        "Yogurt — ½ cup",
+        "Tomato puree — 1 cup",
+        "Butter — 3 tbsp",
+        "Cream — ½ cup",
+        "Garam masala — 1 tsp"
+      ],
+      "steps": [
+        "Marinate chicken with yogurt and spices for 20 minutes.",
+        "Cook chicken until lightly charred and set aside.",
+        "Cook tomato puree with butter and spices.",
+        "Add chicken and simmer for 15 minutes.",
+        "Finish with cream and garam masala."
+      ]
+    },
+    {
+      "title": "Masala Dosa",
+      "cat": "Breakfast",
+      "time": "35 min",
+      "level": "Easy",
+      "img": "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=900&q=80",
+      "desc": "Crispy South Indian dosa filled with fragrant potato masala.",
+      "ing": [
+        "Dosa batter — 3 cups",
+        "Potatoes — 4",
+        "Onion — 1",
+        "Mustard seeds — 1 tsp",
+        "Curry leaves — 10",
+        "Turmeric — ½ tsp"
+      ],
+      "steps": [
+        "Prepare a spiced potato filling with onion and curry leaves.",
+        "Heat a flat pan and spread batter into a thin circle.",
+        "Drizzle oil and cook until crisp.",
+        "Place potato masala in the centre and fold."
+      ]
+    },
+    {
+      "title": "Paneer Tikka",
+      "cat": "Lunch",
+      "time": "30 min",
+      "level": "Easy",
+      "img": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=900&q=80",
+      "desc": "Smoky, colourful paneer skewers with a tangy yogurt marinade.",
+      "ing": [
+        "Paneer — 400 g",
+        "Bell peppers — 2",
+        "Yogurt — ¾ cup",
+        "Tandoori masala — 2 tsp",
+        "Lemon — 1",
+        "Oil — 1 tbsp"
+      ],
+      "steps": [
+        "Mix yogurt, masala, lemon and oil.",
+        "Coat paneer and vegetables and marinate 20 minutes.",
+        "Thread onto skewers.",
+        "Grill or air-fry until golden and lightly charred."
+      ]
+    },
+    {
+      "title": "Mango Cheesecake",
+      "cat": "Dessert",
+      "time": "25 min",
+      "level": "Easy",
+      "img": "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=80",
+      "desc": "A creamy no-bake cheesecake with bright tropical mango flavour.",
+      "ing": [
+        "Cream cheese — 400 g",
+        "Mango puree — 1 cup",
+        "Digestive biscuits — 200 g",
+        "Butter — 80 g",
+        "Sugar — ½ cup",
+        "Whipping cream — 1 cup"
+      ],
+      "steps": [
+        "Crush biscuits and combine with melted butter.",
+        "Press into a cake tin and chill.",
+        "Whip cream and fold into cream cheese, sugar and mango.",
+        "Pour over the base and chill for 4 hours."
+      ]
+    },
+    {
+      "title": "Biryani",
+      "cat": "Dinner",
+      "time": "1 hr",
+      "level": "Medium",
+      "img": "https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=900&q=80",
+      "desc": "Fragrant basmati rice layered with spices, herbs and tender chicken.",
+      "ing": [
+        "Basmati rice — 2 cups",
+        "Chicken — 600 g",
+        "Yogurt — 1 cup",
+        "Onions — 2",
+        "Biryani masala — 2 tbsp",
+        "Mint & coriander — 1 cup"
+      ],
+      "steps": [
+        "Marinate chicken with yogurt and biryani spices.",
+        "Parboil rice with whole spices.",
+        "Cook chicken until nearly done.",
+        "Layer rice over chicken with fried onions and herbs.",
+        "Cover and cook on low heat for 20 minutes."
+      ]
+    },
+    {
+      "title": "Chole",
+      "cat": "Indian",
+      "time": "40 min",
+      "level": "Easy",
+      "img": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80",
+      "desc": "North Indian chickpea curry packed with warming spices.",
+      "ing": [
+        "Chickpeas — 2 cups cooked",
+        "Onion — 1",
+        "Tomatoes — 2",
+        "Ginger-garlic paste — 1 tbsp",
+        "Chole masala — 2 tsp",
+        "Coriander — ½ cup"
+      ],
+      "steps": [
+        "Sauté onion until golden.",
+        "Add ginger-garlic paste and tomatoes.",
+        "Add chole masala and cook until fragrant.",
+        "Add chickpeas and simmer for 20 minutes.",
+        "Garnish with coriander and serve."
+      ]
+    }
+  ]
+}
